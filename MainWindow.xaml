@@ -1,0 +1,30 @@
+﻿<Window x:Class="RegistroPrestamos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RegistroPrestamos"
+        mc:Ignorable="d"
+        Title="Ventana principal" Height="450" Width="500">
+    <StackPanel>
+        <StackPanel>
+            <Menu Height="18">
+                <MenuItem Header="_Registros">
+                    <MenuItem x:Name="rPrestamosMenuItem" Header="Registro de préstamos" Click="rPrestamosMenuItem_Click"/>
+                    <MenuItem x:Name="rPersonasMenuItem" Header="Registro de personas" Click="rPersonasMenuItem_Click"/>
+                </MenuItem>
+
+                <MenuItem Header="_Consultas">
+                    <MenuItem x:Name="cPrestamosMenuItem" Header="Consulta de préstamos" Click="cPrestamosMenuItem_Click"/>
+                    <MenuItem x:Name="cPersonasMenuItem" Header="Consulta de personas" Click="cPersonasMenuItem_Click"/>
+                </MenuItem>
+
+                <MenuItem Header="Ayuda">
+                    <Menu/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+
+       
+    </StackPanel>
+</Window>
