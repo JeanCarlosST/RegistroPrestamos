@@ -10,7 +10,7 @@ namespace RegistroPrestamos.UI.Registro
         public rPersonas(){
             InitializeComponent();
             persona = new Persona();
-            Limpiar();
+            this.DataContext = persona;
         }
 
         public void BuscarBoton_Click(object sender, RoutedEventArgs e){

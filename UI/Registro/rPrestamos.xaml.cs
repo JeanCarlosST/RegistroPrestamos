@@ -10,7 +10,7 @@ namespace RegistroPrestamos.UI.Registro
         public rPrestamos(){
             InitializeComponent();
             prestamo = new Prestamo();
-            Limpiar();
+            this.DataContext = prestamo;
         }
 
         public void BuscarBoton_Click(object sender, RoutedEventArgs e){
