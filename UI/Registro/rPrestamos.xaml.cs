@@ -10,6 +10,7 @@ namespace RegistroPrestamos.UI.Registro
         public rPrestamos(){
             InitializeComponent();
             prestamo = new Prestamo();
+            Limpiar();
         }
 
         public void BuscarBoton_Click(object sender, RoutedEventArgs e){
@@ -33,13 +34,23 @@ namespace RegistroPrestamos.UI.Registro
 
         private bool Validar(){
                 
-            if(FechaDatePicker.Text == "" /*|| NombresTextBox.Text.All(char.IsNumber)*/){
-                MessageBox.Show("Introduzca una fecha válido", "Datos incorrectos", 
+            if(FechaDatePicker.Text.Length == 0){
+                MessageBox.Show("Introduzca una fecha válida", "Datos incorrectos", 
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;   
             
-            } else if(PersonaTextBox.Text == "" /*|| !SalarioTextBox.Text.All(char.IsNumber)*/){
+            } else if(PersonaTextBox.Text.Length == 0){
                 MessageBox.Show("Introduzca el ID de una persona válida", "Datos incorrectos", 
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;                
+            
+            } else if(ConceptoTextBox.Text.Length == 0){
+                MessageBox.Show("Introduzca un concepto", "Datos incorrectos", 
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;                
+            
+            } else if(MontoTextBox.Text.Length == 0){
+                MessageBox.Show("Introduzca un monto", "Datos incorrectos", 
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;                
             

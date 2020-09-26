@@ -10,6 +10,7 @@ namespace RegistroPrestamos.UI.Registro
         public rPersonas(){
             InitializeComponent();
             persona = new Persona();
+            Limpiar();
         }
 
         public void BuscarBoton_Click(object sender, RoutedEventArgs e){
@@ -33,7 +34,7 @@ namespace RegistroPrestamos.UI.Registro
 
         private bool Validar(){
                 
-            if(NombresTextBox.Text == "" /*|| NombresTextBox.Text.All(char.IsNumber)*/){
+            if(NombresTextBox.Text.Length == 0){
                 MessageBox.Show("Introduzca un nombre válido", "Datos incorrectos", 
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;   
