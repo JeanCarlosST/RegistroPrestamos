@@ -1,6 +1,7 @@
+bin/*.*
 bin/Debug/*.*
-obj/Debug/*.*
 obj/*.*
+obj/Debug/*.*
 .vs
 .vscode
 FotosRegistro
