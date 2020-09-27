@@ -110,25 +110,7 @@ namespace RegistroPrestamos.BLL
             Context context = new Context();
 
             try {
-                list = context.Personas.Where(criterio).AsNoTracking().ToList();
-
-            } catch  {
-                throw;
-
-            } finally {
-                context.Dispose();
-            }
-
-            return list;
-        }
-
-        public static List<Persona> Getactor()
-        {
-            List<Persona> list = new List<Persona>();
-            Context context = new Context();
-
-            try {
-                list = context.Personas.ToList();
+                list = context.Personas.Where(criterio).AsNoTracking().ToList<Persona>();
 
             } catch  {
                 throw;

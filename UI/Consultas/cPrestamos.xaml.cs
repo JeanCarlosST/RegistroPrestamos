@@ -14,18 +14,23 @@ namespace RegistroPrestamos.UI.Consulta
         }
 
         private void ConsultarButton_Click(object sender, RoutedEventArgs e){
-            var listado = new List<Prestamo>();
+            var listado = new List<Prestamo>(); 
 
             if (CriterioTextBox.Text.Trim().Length > 0)
             {
                 switch (FiltroComboBox.SelectedIndex)
                 {
                     case 0:
-                        listado = PrestamoBLL.GetList(p => p.PrestamoID == this.ToInt(CriterioTextBox.Text));
+                        listado = PrestamoBLL.GetList(p => p.PrestamoID == Utilities.ToInt(CriterioTextBox.Text));
                         break;
 
-                    // case 1:                       
-                    //     listado = PrestamoBLL.GetList(p => p.PersonaID.Contains(CriterioTextBox.Text, StringComparison.OrdinalIgnoreCase));
+                    case 1:
+                        listado = PrestamoBLL.GetList(p => p.PrestamoID == Utilities.ToInt(CriterioTextBox.Text));
+                        break;
+
+                    // Al buscar en cualquier tabla con string, da error
+                    // case 2:                       
+                    //     listado = PrestamoBLL.GetList(p => p.Concepto.Contains(CriterioTextBox.Text, StringComparison.OrdinalIgnoreCase));
                     //     break;
                 }
             }
@@ -38,13 +43,5 @@ namespace RegistroPrestamos.UI.Consulta
             DatosDataGrid.ItemsSource = listado;
         }
 
-        public int ToInt(string value)
-        {
-            int return_ = 0;
-
-            int.TryParse(value, out return_);
-
-            return return_;
-        }
     }
 }

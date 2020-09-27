@@ -139,23 +139,5 @@ namespace RegistroPrestamos.BLL
 
             return list;
         }
-
-        public static List<Prestamo> Getactor()
-        {
-            List<Prestamo> list = new List<Prestamo>();
-            Context context = new Context();
-
-            try {
-                list = context.Prestamos.ToList();
-
-            } catch  {
-                throw;
-
-            } finally {
-                context.Dispose();
-            }
-
-            return list;
-        }
     }
 }

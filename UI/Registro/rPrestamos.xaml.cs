@@ -14,7 +14,7 @@ namespace RegistroPrestamos.UI.Registro
         }
 
         public void BuscarBoton_Click(object sender, RoutedEventArgs e){
-            var prestamo = PrestamoBLL.Buscar(this.ToInt(PrestamoIDTextBox.Text));
+            var prestamo = PrestamoBLL.Buscar(Utilities.ToInt(PrestamoIDTextBox.Text));
 
             if(prestamo != null)
                 this.prestamo = prestamo;
@@ -54,7 +54,7 @@ namespace RegistroPrestamos.UI.Registro
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;                
             
-            } else if(!PersonaBLL.Existe(ToInt(PersonaTextBox.Text))){
+            } else if(!PersonaBLL.Existe(Utilities.ToInt(PersonaTextBox.Text))){
                 MessageBox.Show("El ID de la persona introducida no existe", "Datos incorrectos", 
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
@@ -81,7 +81,7 @@ namespace RegistroPrestamos.UI.Registro
                                 MessageBoxButton.OK, MessageBoxImage.Error);
         }
         public void EliminarBoton_Click(object sender, RoutedEventArgs e){
-            if(PrestamoBLL.Eliminar(this.ToInt(PrestamoIDTextBox.Text))){
+            if(PrestamoBLL.Eliminar(Utilities.ToInt(PrestamoIDTextBox.Text))){
                 Limpiar();
                 MessageBox.Show("Registro borrado", "Borrado exitoso", 
                                 MessageBoxButton.OK, MessageBoxImage.Information);
@@ -89,14 +89,6 @@ namespace RegistroPrestamos.UI.Registro
             } else 
                 MessageBox.Show("Error", "Hubo un error al borrar", 
                                 MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-        public int ToInt(string value)
-        {
-            int return_ = 0;
-
-            int.TryParse(value, out return_);
-
-            return return_;
         }
     }
 }
