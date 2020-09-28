@@ -25,7 +25,7 @@ namespace RegistroPrestamos.UI.Consulta
                         break;
 
                     case 1:
-                        listado = PrestamoBLL.GetList(p => p.PrestamoID == Utilities.ToInt(CriterioTextBox.Text));
+                        listado = PrestamoBLL.GetList(p => p.PersonaID == Utilities.ToInt(CriterioTextBox.Text));
                         break;
 
                     case 2:
@@ -39,6 +39,7 @@ namespace RegistroPrestamos.UI.Consulta
 
                         listado = PrestamoBLL.GetList(p => p.Fecha.Equals(DateTime.Parse(CriterioTextBox.Text)));
                         break;
+                        
                     // Al buscar en cualquier tabla con string, da error
                     // case 2:                       
                     //     listado = PrestamoBLL.GetList(p => p.Concepto.Contains(CriterioTextBox.Text, StringComparison.OrdinalIgnoreCase));
