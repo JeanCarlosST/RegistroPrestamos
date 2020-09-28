@@ -10,7 +10,7 @@
                 <ComboBox x:Name="FiltroComboBox" Width="100" Height="25">
                     <ComboBoxItem Content="Prestamo ID"/>
                     <ComboBoxItem Content="Persona ID"/>
-                    <ComboBoxItem Content="Concepto"/>
+                    <ComboBoxItem Content="Fecha"/>
                 </ComboBox>
             </StackPanel>
 
