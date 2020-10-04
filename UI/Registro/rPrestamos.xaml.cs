@@ -1,6 +1,7 @@
 using System.Windows;
 using RegistroPrestamos.Entities;
 using RegistroPrestamos.BLL;
+using System;
 
 namespace RegistroPrestamos.UI.Registro
 {
@@ -10,7 +11,14 @@ namespace RegistroPrestamos.UI.Registro
         public rPrestamos(){
             InitializeComponent();
             prestamo = new Prestamo();
+            prestamo.Fecha = DateTime.Now;
             this.DataContext = prestamo;
+
+            PersonaComboBox.ItemsSource = PersonaBLL.GetList(p => true);
+            PersonaComboBox.SelectedValuePath = "PersonaID";
+            PersonaComboBox.DisplayMemberPath = "Nombres";
+
+           
         }
 
         public void BuscarBoton_Click(object sender, RoutedEventArgs e){
@@ -39,10 +47,10 @@ namespace RegistroPrestamos.UI.Registro
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;   
             
-            } else if(PersonaTextBox.Text.Length == 0){
-                MessageBox.Show("Introduzca el ID de una persona válida", "Datos incorrectos", 
-                                MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;                
+            // } else if(PersonaTextBox.Text.Length == 0){
+            //     MessageBox.Show("Introduzca el ID de una persona válida", "Datos incorrectos", 
+            //                     MessageBoxButton.OK, MessageBoxImage.Warning);
+            //     return false;                
             
             } else if(ConceptoTextBox.Text.Length == 0){
                 MessageBox.Show("Introduzca un concepto", "Datos incorrectos", 
@@ -54,10 +62,10 @@ namespace RegistroPrestamos.UI.Registro
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;                
             
-            } else if(!PersonaBLL.Existe(Utilities.ToInt(PersonaTextBox.Text))){
-                MessageBox.Show("El ID de la persona introducida no existe", "Datos incorrectos", 
-                                MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+            // } else if(!PersonaBLL.Existe(Utilities.ToInt(PersonaTextBox.Text))){
+            //     MessageBox.Show("El ID de la persona introducida no existe", "Datos incorrectos", 
+            //                     MessageBoxButton.OK, MessageBoxImage.Warning);
+            //     return false;
 
             } else
                 return true;

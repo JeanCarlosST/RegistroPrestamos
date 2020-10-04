@@ -25,7 +25,8 @@
         <!-- PersonaID -->
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
             <Label Content="Persona ID:" Width="120"/>
-            <TextBox x:Name="PersonaTextBox" Width="200" Text="{Binding PersonaID}"/>
+            <!-- <TextBox x:Name="PersonaTextBox" Width="200" Text="{Binding PersonaID}"/> -->
+            <ComboBox x:Name="PersonaComboBox" Width="200" SelectedValue="{Binding PersonaID}"/>
         </StackPanel>
 
         <!-- Concepto -->
