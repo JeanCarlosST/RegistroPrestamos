@@ -1,11 +1,11 @@
-
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RegistroPrestamos.Entities
 {
-    public class Prestamo {
+    public class Prestamos {
         [Key]
         public int PrestamoID { get; set; }
         public DateTime Fecha { get; set; }
@@ -14,5 +14,7 @@ namespace RegistroPrestamos.Entities
         public float Balance { get; set; }
         public int PersonaID { get; set; }
 
+        [ForeignKey("PrestamoID")]
+        public virtual List<MorasDetalle> Detalle { get; set; }
     }
 }
