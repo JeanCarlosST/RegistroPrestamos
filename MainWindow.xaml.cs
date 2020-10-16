@@ -35,6 +35,10 @@ namespace RegistroPrestamos
             rPersonas rPersonas = new rPersonas();
             rPersonas.Show();
         }
+        public void rMorasMenuItem_Click(object sender, RoutedEventArgs e){
+            rMoras rMoras = new rMoras();
+            rMoras.Show();
+        }
         public void cPrestamosMenuItem_Click(object sender, RoutedEventArgs e){
             cPrestamos cPrestamos = new cPrestamos();
             cPrestamos.Show();
@@ -43,5 +47,10 @@ namespace RegistroPrestamos
             cPersonas cPersonas = new cPersonas();
             cPersonas.Show();
         }
+        public void cMorasMenuItem_Click(object sender, RoutedEventArgs e){
+            cMoras cMoras = new cMoras();
+            cMoras.Show();
+        }
+        
     }
 }

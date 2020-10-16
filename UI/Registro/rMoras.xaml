@@ -1,0 +1,7 @@
+<Window x:Class="RegistroPrestamos.UI.Registro.rMoras"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Registro moras" Height="374" Width="450">
+
+    
+</Window>

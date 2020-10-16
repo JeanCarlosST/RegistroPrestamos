@@ -1,15 +1,20 @@
 using System.Windows;
 using RegistroPrestamos.Entities;
 using RegistroPrestamos.BLL;
+using System.Linq;
+using System.Drawing;
+using System.Windows.Media;
+using System.Windows.Controls;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace RegistroPrestamos.UI.Registro
 {
     public partial class rPersonas : Window {
-        Persona persona;
+        Personas persona;
 
         public rPersonas(){
             InitializeComponent();
-            persona = new Persona();
+            persona = new Personas();
             this.DataContext = persona;
         }
 
@@ -19,7 +24,7 @@ namespace RegistroPrestamos.UI.Registro
             if(persona != null)
                 this.persona = persona;
             else{
-                this.persona = new Persona();
+                this.persona = new Personas();
                 MessageBox.Show("No se encontró ningún registro", "Sin coincidencias", 
                                 MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -28,18 +33,28 @@ namespace RegistroPrestamos.UI.Registro
         }
 
         private void Limpiar(){
-            this.persona = new Persona();
+            this.persona = new Personas();
             this.DataContext = this.persona;
         }
 
         private bool Validar(){
-                
-            if(NombresTextBox.Text.Length == 0){
-                MessageBox.Show("Introduzca un nombre válido", "Datos incorrectos", 
+
+            if (NombresTextBox.Text.Length == 0)
+            {
+                MessageBox.Show("Introduzca un nombre válido", "Datos incorrectos",
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;   
-            
-            } else
+                return false;
+
+            }
+            else if (NombresTextBox.Text.Any(char.IsPunctuation) ||
+                      NombresTextBox.Text.Any(char.IsSymbol) ||
+                      NombresTextBox.Text.Any(char.IsDigit))
+            {
+                MessageBox.Show("Introduzca un nombre válido", "Datos incorrectos",
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+            else
                 return true;
         }
         public void NuevoBoton_Click(object sender, RoutedEventArgs e){
@@ -69,6 +84,20 @@ namespace RegistroPrestamos.UI.Registro
             } else 
                 MessageBox.Show("Error", "Hubo un error al borrar", 
                                 MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void Nombre(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (NombresTextBox.Text.Any(char.IsPunctuation) || 
+                NombresTextBox.Text.Any(char.IsSymbol) || 
+                NombresTextBox.Text.Any(char.IsDigit))
+            {
+                Label.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Label.Visibility = Visibility.Hidden;
+            }   
         }
     }
 }

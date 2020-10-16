@@ -6,19 +6,17 @@ using System;
 namespace RegistroPrestamos.UI.Registro
 {
     public partial class rPrestamos : Window {
-        Prestamo prestamo;
+        Prestamos prestamo;
 
         public rPrestamos(){
             InitializeComponent();
-            prestamo = new Prestamo();
+            prestamo = new Prestamos();
             prestamo.Fecha = DateTime.Now;
             this.DataContext = prestamo;
 
             PersonaComboBox.ItemsSource = PersonaBLL.GetList(p => true);
             PersonaComboBox.SelectedValuePath = "PersonaID";
             PersonaComboBox.DisplayMemberPath = "Nombres";
-
-           
         }
 
         public void BuscarBoton_Click(object sender, RoutedEventArgs e){
@@ -27,7 +25,7 @@ namespace RegistroPrestamos.UI.Registro
             if(prestamo != null)
                 this.prestamo = prestamo;
             else{
-                this.prestamo = new Prestamo();
+                this.prestamo = new Prestamos();
                 MessageBox.Show("No se encontró ningún registro", "Sin coincidencias", 
                                 MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -36,7 +34,7 @@ namespace RegistroPrestamos.UI.Registro
         }
 
         private void Limpiar(){
-            this.prestamo = new Prestamo();
+            this.prestamo = new Prestamos();
             this.DataContext = this.prestamo;
         }
 
@@ -46,7 +44,7 @@ namespace RegistroPrestamos.UI.Registro
                 MessageBox.Show("Introduzca una fecha válida", "Datos incorrectos", 
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;   
-            
+
             // } else if(PersonaTextBox.Text.Length == 0){
             //     MessageBox.Show("Introduzca el ID de una persona válida", "Datos incorrectos", 
             //                     MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -56,7 +54,7 @@ namespace RegistroPrestamos.UI.Registro
                 MessageBox.Show("Introduzca un concepto", "Datos incorrectos", 
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;                
-            
+                
             } else if(MontoTextBox.Text.Length == 0){
                 MessageBox.Show("Introduzca un monto", "Datos incorrectos", 
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -97,6 +95,18 @@ namespace RegistroPrestamos.UI.Registro
             } else 
                 MessageBox.Show("Error", "Hubo un error al borrar", 
                                 MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public String CleanSymbols(string text)
+        {
+            text = text.Replace(" ", "");
+            text = text.Replace("-", "");
+            text = text.Replace("(", "");
+            text = text.Replace(")", "");
+            if(text.StartsWith("+1"))
+                text = text.Replace("+1", "");
+
+            return text;
         }
     }
 }

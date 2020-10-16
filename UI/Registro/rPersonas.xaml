@@ -19,13 +19,14 @@
         <!-- Nombres -->
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
             <Label Content="Nombres:" Width="120"/>
-            <TextBox x:Name="NombresTextBox" Width="200" Text="{Binding Nombres}"/>
+            <TextBox x:Name="NombresTextBox" Width="200" Text="{Binding Nombres}" TextChanged="Nombre"/>
         </StackPanel>
 
+        <Label x:Name="Label" Content="Eso no es un nombre mmg." Foreground="Red" Visibility="Hidden"/>
         <!-- Balance -->
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
             <Label Content="Balance:" Width="120"/>
-            <TextBox x:Name="BalanceTextBox" Width="200" IsReadOnly="true" Text="{Binding Balance}"/>
+            <TextBox x:Name="BalanceTextBox" Width="200" IsReadOnly="true" Text="{Binding Balance}" />
         </StackPanel>
 
         <!-- Botones -->

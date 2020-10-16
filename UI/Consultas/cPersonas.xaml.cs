@@ -14,7 +14,7 @@ namespace RegistroPrestamos.UI.Consulta
         }
 
         private void ConsultarButton_Click(object sender, RoutedEventArgs e){
-            var listado = new List<Persona>();
+            var listado = new List<Personas>();
 
             string criterio = CriterioTextBox.Text.Trim();
             if (criterio.Length > 0)

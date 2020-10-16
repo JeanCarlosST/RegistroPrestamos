@@ -38,7 +38,7 @@
         <!-- Monto -->
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
             <Label Content="Monto:" Width="120"/>
-            <TextBox x:Name="MontoTextBox" Width="200" Text="{Binding Monto}"/>
+            <TextBox x:Name="MontoTextBox" Width="200" Text="{Binding Monto}" />
         </StackPanel>
 
         <!-- Balance -->
