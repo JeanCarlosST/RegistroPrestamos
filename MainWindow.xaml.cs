@@ -48,8 +48,7 @@ namespace RegistroPrestamos
             cPersonas.Show();
         }
         public void cMorasMenuItem_Click(object sender, RoutedEventArgs e){
-            cMoras cMoras = new cMoras();
-            cMoras.Show();
+            
         }
         
     }
