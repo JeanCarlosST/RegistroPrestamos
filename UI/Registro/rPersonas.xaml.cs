@@ -5,7 +5,6 @@ using System.Linq;
 using System.Drawing;
 using System.Windows.Media;
 using System.Windows.Controls;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace RegistroPrestamos.UI.Registro
 {
