@@ -10,13 +10,13 @@ namespace RegistroPrestamos.BLL
 {
     public class PersonaBLL
     {
-        public static bool Guardar(Persona persona){
+        public static bool Guardar(Personas persona){
             if(!Existe(persona.PersonaID))
                 return Insertar(persona); 
             else    
                 return Modificar(persona);
         }
-        private static bool Insertar(Persona persona){
+        private static bool Insertar(Personas persona){
             Context context = new Context();
             bool found = false;
 
@@ -33,11 +33,12 @@ namespace RegistroPrestamos.BLL
 
             return found;
         }
-        public static bool Modificar(Persona persona){
+        public static bool Modificar(Personas persona){
             Context context = new Context();
             bool found = false;
 
-            try{
+            try
+            {
                 context.Entry(persona).State = EntityState.Modified;
                 found = context.SaveChanges() > 0;
             
@@ -71,9 +72,9 @@ namespace RegistroPrestamos.BLL
 
             return found;
         }
-        public static Persona Buscar(int id){
+        public static Personas Buscar(int id){
             Context context = new Context();
-            Persona persona;
+            Personas persona;
 
             try{
                 persona = context.Personas.Find(id);
@@ -104,13 +105,13 @@ namespace RegistroPrestamos.BLL
             return found;
         }
 
-        public static List<Persona> GetList(Expression<Func<Persona, bool>> criterio)
+        public static List<Personas> GetList(Expression<Func<Personas, bool>> criterio)
         {
-            List<Persona> list = new List<Persona>();
+            List<Personas> list = new List<Personas>();
             Context context = new Context();
 
             try {
-                list = context.Personas.Where(criterio).AsNoTracking().ToList<Persona>();
+                list = context.Personas.Where(criterio).AsNoTracking().ToList<Personas>();
 
             } catch  {
                 throw;

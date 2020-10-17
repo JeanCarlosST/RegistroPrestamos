@@ -10,13 +10,13 @@ namespace RegistroPrestamos.BLL
 {
     public class PrestamoBLL
     {
-        public static bool Guardar(Prestamo prestamo){
+        public static bool Guardar(Prestamos prestamo){
             if(!Existe(prestamo.PrestamoID))
                 return Insertar(prestamo); 
             else    
                 return Modificar(prestamo);
         }
-        private static bool Insertar(Prestamo prestamo){
+        private static bool Insertar(Prestamos prestamo){
             Context context = new Context();
             bool found = false;
 
@@ -25,7 +25,7 @@ namespace RegistroPrestamos.BLL
                 context.Prestamos.Add(prestamo);
                 found = context.SaveChanges() > 0;
 
-                Persona persona = PersonaBLL.Buscar(prestamo.PersonaID);
+                Personas persona = PersonaBLL.Buscar(prestamo.PersonaID);
                 persona.Balance += prestamo.Monto;
                 PersonaBLL.Modificar(persona);
 
@@ -38,19 +38,25 @@ namespace RegistroPrestamos.BLL
 
             return found;
         }
-        public static bool Modificar(Prestamo prestamo){
+        public static bool Modificar(Prestamos prestamo){
             Context context = new Context();
             bool found = false;
 
             try{
                 prestamo.Balance = prestamo.Monto;
-                Prestamo viejoPrestamo = PrestamoBLL.Buscar(prestamo.PrestamoID);
+                Prestamos viejoPrestamo = PrestamoBLL.Buscar(prestamo.PrestamoID);
                 float nuevoMonto = prestamo.Monto - viejoPrestamo.Monto;
                 
+                context.Database.ExecuteSqlRaw($"delete from MorasDetalle where PrestamoID = {prestamo.PrestamoID}");
+                foreach(var anterior in prestamo.Detalle)
+                {
+                    context.Entry(anterior).State = EntityState.Added;
+                }
+
                 context.Entry(prestamo).State = EntityState.Modified;
                 found = context.SaveChanges() > 0;
             
-                Persona persona = PersonaBLL.Buscar(prestamo.PersonaID);
+                Personas persona = PersonaBLL.Buscar(prestamo.PersonaID);
                 persona.Balance += nuevoMonto;
                 PersonaBLL.Modificar(persona);
 
@@ -70,9 +76,8 @@ namespace RegistroPrestamos.BLL
             try{
                 var prestamo = context.Prestamos.Find(id);
 
-
                 if(prestamo != null){
-                    Persona persona = PersonaBLL.Buscar(prestamo.PersonaID);
+                    Personas persona = PersonaBLL.Buscar(prestamo.PersonaID);
                     persona.Balance -= prestamo.Monto;
                     PersonaBLL.Modificar(persona);
 
@@ -89,12 +94,15 @@ namespace RegistroPrestamos.BLL
 
             return found;
         }
-        public static Prestamo Buscar(int id){
+        public static Prestamos Buscar(int id){
             Context context = new Context();
-            Prestamo prestamo;
+            Prestamos prestamo;
 
             try{
-                prestamo = context.Prestamos.Find(id);
+                prestamo = context.Prestamos
+                    .Include(p => p.Detalle)
+                    .Where(p => p.PrestamoID == id)
+                    .SingleOrDefault();
                 
             } catch{
                 throw;
@@ -122,9 +130,9 @@ namespace RegistroPrestamos.BLL
             return found;
         }
 
-        public static List<Prestamo> GetList(Expression<Func<Prestamo, bool>> criterio)
+        public static List<Prestamos> GetList(Expression<Func<Prestamos, bool>> criterio)
         {
-            List<Prestamo> list = new List<Prestamo>();
+            List<Prestamos> list = new List<Prestamos>();
             Context context = new Context();
 
             try {
