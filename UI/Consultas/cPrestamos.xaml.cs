@@ -13,7 +13,7 @@ namespace RegistroPrestamos.UI.Consulta
             InitializeComponent();
         }
 
-        private void ConsultarButton_Click(object sender, RoutedEventArgs e){
+        private void ConsultarBoton_Click(object sender, RoutedEventArgs e){
             var listado = new List<Prestamos>(); 
 
             if (CriterioTextBox.Text.Trim().Length > 0)
@@ -40,10 +40,9 @@ namespace RegistroPrestamos.UI.Consulta
                         listado = PrestamoBLL.GetList(p => p.Fecha.Equals(DateTime.Parse(CriterioTextBox.Text)));
                         break;
                         
-                    // Al buscar en cualquier tabla con string, da error
-                    // case 2:                       
-                    //     listado = PrestamoBLL.GetList(p => p.Concepto.Contains(CriterioTextBox.Text, StringComparison.OrdinalIgnoreCase));
-                    //     break;
+                    case 3:                       
+                         listado = PrestamoBLL.GetList(p => p.Concepto.ToLower().Contains(CriterioTextBox.Text.ToLower()));
+                         break;
                 }
             }
             else

@@ -13,7 +13,7 @@ namespace RegistroPrestamos.UI.Consulta
             InitializeComponent();
         }
 
-        private void ConsultarButton_Click(object sender, RoutedEventArgs e){
+        private void ConsultarBoton_Click(object sender, RoutedEventArgs e){
             var listado = new List<Personas>();
 
             string criterio = CriterioTextBox.Text.Trim();
@@ -25,10 +25,9 @@ namespace RegistroPrestamos.UI.Consulta
                         listado = PersonaBLL.GetList(p => p.PersonaID == Utilities.ToInt(CriterioTextBox.Text));
                         break;
                     
-                    // Al buscar en cualquier tabla con string, da error
-                    // case 1:                       
-                    //     listado = PersonaBLL.GetList(p => p.Nombres.Contains(criterio, StringComparison.OrdinalIgnoreCase));
-                    //     break;
+                    case 1:                       
+                        listado = PersonaBLL.GetList(p => p.Nombres.ToLower().Contains(criterio.ToLower()));
+                        break;
                 }
             }
             else

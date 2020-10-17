@@ -1,11 +1,14 @@
 <Window x:Class="RegistroPrestamos.UI.Consulta.cPersonas"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Consulta personas" Height="450" Width="550">
+    Title="Consulta personas" 
+    Height="450" Width="550"
+    Icon="/Images/form.png">
 
-    <StackPanel Orientation="Vertical" Margin="10,5,10,0">
-        <StackPanel Orientation="Horizontal" Height="58">
-            <StackPanel Margin="5,0">
+    <StackPanel Orientation="Vertical" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Height="58">
+            
+            <StackPanel HorizontalAlignment="Left" >
                 <Label Content="Filtro:"/>
                 <ComboBox x:Name="FiltroComboBox" Width="100" Height="25">
                     <ComboBoxItem Content="Persona ID"/>
@@ -13,28 +16,26 @@
                 </ComboBox>
             </StackPanel>
 
-            <StackPanel Margin="5,0">
+            <StackPanel HorizontalAlignment="Center">
                 <Label Content="Critero:"/>
-                <TextBox x:Name="CriterioTextBox" Width="100" Height="25"/>
+                <TextBox x:Name="CriterioTextBox" Width="290" Height="25" BorderBrush="Black"/>
             </StackPanel>
-            <Button x:Name="ConsultarButton" Height="30" Width="85" Margin="0,20,0,0" Click="ConsultarButton_Click">
+            
+            <Button x:Name="BuscarBoton" Width="85" Height="30" Margin="0,0,0,0" Click="ConsultarBoton_Click" BorderBrush="Black" Background="#FF02A5ED"  VerticalAlignment="Center" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">
                     <Image Width="18" Height="18" Source="/Images/search.png"/>
-                    <Label Content="Buscar"/>
+                    <Label Content="Buscar" Foreground="White" FontWeight="Bold"/>
                 </StackPanel>
             </Button>
-        </StackPanel>
+        </Grid>
 
-        <StackPanel HorizontalAlignment="Left">
-        
-            <DataGrid x:Name="DatosDataGrid" Height="350" Width="527" AutoGenerateColumns="False" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="PersonaID" Binding="{Binding PersonaID}"/>
-                    <DataGridTextColumn Header="Nombres" Binding="{Binding Nombres}"/>
-                    <DataGridTextColumn Header="Balance" Binding="{Binding Balance}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+        <DataGrid x:Name="DatosDataGrid" Height="320" Width="Auto" AutoGenerateColumns="False" IsReadOnly="True" BorderBrush="Black">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="PersonaID" Binding="{Binding PersonaID}" Width="*"/>
+                <DataGridTextColumn Header="Nombres" Binding="{Binding Nombres}" Width="*"/>
+                <DataGridTextColumn Header="Balance" Binding="{Binding Balance}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 
 </Window>
