@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RegistroPrestamos"
         mc:Ignorable="d"
-        Title="Ventana principal" Height="306" Width="420">
+        Title="Ventana principal" 
+        Height="306" Width="420"
+        Icon="/Images/form.png">
+
     <StackPanel>
         <StackPanel>
             <Menu Height="18">
