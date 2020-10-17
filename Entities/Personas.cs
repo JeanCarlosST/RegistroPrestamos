@@ -12,5 +12,10 @@ namespace RegistroPrestamos.Entities
 
         [ForeignKey("PersonaID")]
         public virtual List<Prestamos> Prestamos { get; set; }
+
+        public Personas()
+        {
+            Prestamos = new List<Prestamos>();
+        }
     }   
 }
