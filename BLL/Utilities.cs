@@ -10,5 +10,14 @@ namespace RegistroPrestamos.BLL
 
             return return_;
         }
+
+        public static decimal ToDecimal(string value)
+        {
+            decimal return_ = 0;
+
+            decimal.TryParse(value, out return_);
+
+            return return_;
+        }
     }
 }

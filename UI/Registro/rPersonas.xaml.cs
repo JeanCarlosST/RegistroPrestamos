@@ -38,9 +38,11 @@ namespace RegistroPrestamos.UI.Registro
 
         private bool Validar(){
 
+            NombresTextBox.Text = NombresTextBox.Text.Trim();
+
             if (NombresTextBox.Text.Length == 0)
             {
-                MessageBox.Show("Introduzca un nombre válido", "Datos incorrectos",
+                MessageBox.Show("Introduzca un nombre", "Datos incorrectos",
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
 
@@ -49,7 +51,7 @@ namespace RegistroPrestamos.UI.Registro
                       NombresTextBox.Text.Any(char.IsSymbol) ||
                       NombresTextBox.Text.Any(char.IsDigit))
             {
-                MessageBox.Show("Introduzca un nombre válido", "Datos incorrectos",
+                MessageBox.Show("Introduzca un nombre que no contenga ni símbolos ni números.", "Datos incorrectos",
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
@@ -83,20 +85,6 @@ namespace RegistroPrestamos.UI.Registro
             } else 
                 MessageBox.Show("Error", "Hubo un error al borrar", 
                                 MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-
-        private void Nombre(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            if (NombresTextBox.Text.Any(char.IsPunctuation) || 
-                NombresTextBox.Text.Any(char.IsSymbol) || 
-                NombresTextBox.Text.Any(char.IsDigit))
-            {
-                Label.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Label.Visibility = Visibility.Hidden;
-            }   
         }
     }
 }

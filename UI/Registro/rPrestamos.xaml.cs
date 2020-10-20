@@ -40,15 +40,22 @@ namespace RegistroPrestamos.UI.Registro
 
         private bool Validar(){
                 
+            DateTime date;
             if(FechaDatePicker.Text.Length == 0){
-                MessageBox.Show("Introduzca una fecha válida", "Datos incorrectos", 
+                MessageBox.Show("Introduzca una fecha", "Datos incorrectos", 
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;   
 
-            // } else if(PersonaTextBox.Text.Length == 0){
-            //     MessageBox.Show("Introduzca el Id de una persona válida", "Datos incorrectos", 
-            //                     MessageBoxButton.OK, MessageBoxImage.Warning);
-            //     return false;                
+            } else if(!DateTime.TryParse(FechaDatePicker.Text, out date)){
+                MessageBox.Show("Seleccione a una fecha válida", "Datos incorrectos", 
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;  
+            
+
+            } else if(PersonaComboBox.SelectedIndex == -1){
+                MessageBox.Show("Seleccione a una persona", "Datos incorrectos", 
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;  
             
             } else if(ConceptoTextBox.Text.Length == 0){
                 MessageBox.Show("Introduzca un concepto", "Datos incorrectos", 
@@ -59,12 +66,7 @@ namespace RegistroPrestamos.UI.Registro
                 MessageBox.Show("Introduzca un monto", "Datos incorrectos", 
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;                
-            
-            // } else if(!PersonaBLL.Existe(Utilities.ToInt(PersonaTextBox.Text))){
-            //     MessageBox.Show("El Id de la persona introducida no existe", "Datos incorrectos", 
-            //                     MessageBoxButton.OK, MessageBoxImage.Warning);
-            //     return false;
-
+    
             } else
                 return true;
         }

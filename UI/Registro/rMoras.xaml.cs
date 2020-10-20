@@ -99,21 +99,6 @@ namespace RegistroPrestamos.UI.Registro
 
             bool paso = MorasBLL.Guardar(mora);
 
-            // if (string.IsNullOrWhiteSpace(MoraIdTextBox.Text) || MoraIdTextBox.Text == "0")
-            //     paso = MorasBLL.Guardar(mora);
-
-           
-            // else
-            // {
-            //     if(!ExisteDB())
-            //     {
-            //         MessageBox.Show("No se pudo modificar la mora porque no existe.", "Registro de moras", MessageBoxButton.OK, MessageBoxImage.Error);
-            //         return;
-            //     }
-
-            //     paso = MorasBLL.Modificar(mora);
-            // }
-
             if(paso)
             {
                 Limpiar();
@@ -139,9 +124,16 @@ namespace RegistroPrestamos.UI.Registro
 
         private bool ValidarDetalle()
         {
-            if(!ValorMoraTextBox.Text.All(char.IsNumber) || ValorMoraTextBox.Text.Length == 0 || Utilities.ToInt(ValorMoraTextBox.Text) == 0)
+            decimal v;
+            if(!Decimal.TryParse(ValorMoraTextBox.Text, out v))
             {
-                MessageBox.Show("Ingrese un valor válido", "Registro de moras", MessageBoxButton.OK, MessageBoxImage.Error);
+                 MessageBox.Show("Ingrese un valor que contenga un número válido", "Registro de moras", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;   
+            }
+
+            if(ValorMoraTextBox.Text.Length == 0 || Utilities.ToDecimal(ValorMoraTextBox.Text) == 0)
+            {
+                MessageBox.Show("Ingrese un valor que sea mayor a cero.", "Registro de moras", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
