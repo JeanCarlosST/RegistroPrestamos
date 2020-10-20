@@ -30,7 +30,6 @@
             </Button>
         </Grid>
 
-
         <DataGrid x:Name="DatosDataGrid" Height="320" Width="Auto" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="PrestamoId" Binding="{Binding PrestamoId}" Width="*"/>
@@ -39,6 +38,7 @@
                 <DataGridTextColumn Header="Concepto" Binding="{Binding Concepto}"  Width="*"/>
                 <DataGridTextColumn Header="Monto" Binding="{Binding Monto}"  Width="*"/>
                 <DataGridTextColumn Header="Balance" Binding="{Binding Balance}"  Width="*"/>
+                <DataGridTextColumn Header="Mora" Binding="{Binding Mora}"  Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>
