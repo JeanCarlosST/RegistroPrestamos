@@ -17,7 +17,7 @@ namespace RegistroPrestamos.UI.Registro
             this.DataContext = mora;
 
             PrestamoComboBox.ItemsSource = PrestamoBLL.GetList(p => true);
-            PrestamoComboBox.SelectedValuePath = "PrestamoID";
+            PrestamoComboBox.SelectedValuePath = "PrestamoId";
             PrestamoComboBox.DisplayMemberPath = "Concepto";
         }
 
@@ -97,22 +97,22 @@ namespace RegistroPrestamos.UI.Registro
             if(!ValidarMora())
                 return;
 
-            bool paso = false;
+            bool paso = MorasBLL.Guardar(mora);
 
-            if (string.IsNullOrWhiteSpace(MoraIdTextBox.Text) || MoraIdTextBox.Text == "0")
-                paso = MorasBLL.Guardar(mora);
+            // if (string.IsNullOrWhiteSpace(MoraIdTextBox.Text) || MoraIdTextBox.Text == "0")
+            //     paso = MorasBLL.Guardar(mora);
 
            
-            else
-            {
-                if(!ExisteDB())
-                {
-                    MessageBox.Show("No se pudo modificar la mora porque no existe.", "Registro de moras", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+            // else
+            // {
+            //     if(!ExisteDB())
+            //     {
+            //         MessageBox.Show("No se pudo modificar la mora porque no existe.", "Registro de moras", MessageBoxButton.OK, MessageBoxImage.Error);
+            //         return;
+            //     }
 
-                paso = MorasBLL.Modificar(mora);
-            }
+            //     paso = MorasBLL.Modificar(mora);
+            // }
 
             if(paso)
             {

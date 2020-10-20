@@ -9,8 +9,8 @@ using RegistroPrestamos.DAL;
 namespace RegistroPrestamos.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20201017153318_Inicial")]
-    partial class Inicial
+    [Migration("20201020005004_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,7 +20,7 @@ namespace RegistroPrestamos.Migrations
 
             modelBuilder.Entity("RegistroPrestamos.Entities.Moras", b =>
                 {
-                    b.Property<int>("MoraID")
+                    b.Property<int>("MoraId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -30,38 +30,38 @@ namespace RegistroPrestamos.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("MoraID");
+                    b.HasKey("MoraId");
 
                     b.ToTable("Moras");
                 });
 
             modelBuilder.Entity("RegistroPrestamos.Entities.MorasDetalle", b =>
                 {
-                    b.Property<int>("MoraDetalleID")
+                    b.Property<int>("MoraDetalleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MoraID")
+                    b.Property<int>("MoraId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PrestamoID")
+                    b.Property<int>("PrestamoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Valor")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("MoraDetalleID");
+                    b.HasKey("MoraDetalleId");
 
-                    b.HasIndex("MoraID");
+                    b.HasIndex("MoraId");
 
-                    b.HasIndex("PrestamoID");
+                    b.HasIndex("PrestamoId");
 
                     b.ToTable("MorasDetalle");
                 });
 
             modelBuilder.Entity("RegistroPrestamos.Entities.Personas", b =>
                 {
-                    b.Property<int>("PersonaID")
+                    b.Property<int>("PersonaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -71,14 +71,14 @@ namespace RegistroPrestamos.Migrations
                     b.Property<string>("Nombres")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PersonaID");
+                    b.HasKey("PersonaId");
 
                     b.ToTable("Personas");
                 });
 
             modelBuilder.Entity("RegistroPrestamos.Entities.Prestamos", b =>
                 {
-                    b.Property<int>("PrestamoID")
+                    b.Property<int>("PrestamoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -94,12 +94,15 @@ namespace RegistroPrestamos.Migrations
                     b.Property<float>("Monto")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("PersonaID")
+                    b.Property<decimal>("Mora")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PersonaId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("PrestamoID");
+                    b.HasKey("PrestamoId");
 
-                    b.HasIndex("PersonaID");
+                    b.HasIndex("PersonaId");
 
                     b.ToTable("Prestamos");
                 });
@@ -108,13 +111,13 @@ namespace RegistroPrestamos.Migrations
                 {
                     b.HasOne("RegistroPrestamos.Entities.Moras", null)
                         .WithMany("Detalle")
-                        .HasForeignKey("MoraID")
+                        .HasForeignKey("MoraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RegistroPrestamos.Entities.Prestamos", null)
                         .WithMany("Detalle")
-                        .HasForeignKey("PrestamoID")
+                        .HasForeignKey("PrestamoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -123,7 +126,7 @@ namespace RegistroPrestamos.Migrations
                 {
                     b.HasOne("RegistroPrestamos.Entities.Personas", null)
                         .WithMany("Prestamos")
-                        .HasForeignKey("PersonaID")
+                        .HasForeignKey("PersonaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

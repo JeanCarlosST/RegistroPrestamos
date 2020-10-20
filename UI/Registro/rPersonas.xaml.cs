@@ -18,7 +18,7 @@ namespace RegistroPrestamos.UI.Registro
         }
 
         public void BuscarBoton_Click(object sender, RoutedEventArgs e){
-            var persona = PersonaBLL.Buscar(Utilities.ToInt(PersonaIDTextBox.Text));
+            var persona = PersonaBLL.Buscar(Utilities.ToInt(PersonaIdTextBox.Text));
 
             if(persona != null)
                 this.persona = persona;
@@ -75,7 +75,7 @@ namespace RegistroPrestamos.UI.Registro
                                 MessageBoxButton.OK, MessageBoxImage.Error);
         }
         public void EliminarBoton_Click(object sender, RoutedEventArgs e){
-            if(PersonaBLL.Eliminar(Utilities.ToInt(PersonaIDTextBox.Text))){
+            if(PersonaBLL.Eliminar(Utilities.ToInt(PersonaIdTextBox.Text))){
                 Limpiar();
                 MessageBox.Show("Registro borrado", "Borrado exitoso", 
                                 MessageBoxButton.OK, MessageBoxImage.Information);

@@ -22,7 +22,7 @@ namespace RegistroPrestamos.UI.Consulta
                 switch (FiltroComboBox.SelectedIndex)
                 {
                     case 0:
-                        listado = PersonaBLL.GetList(p => p.PersonaID == Utilities.ToInt(CriterioTextBox.Text));
+                        listado = PersonaBLL.GetList(p => p.PersonaId == Utilities.ToInt(CriterioTextBox.Text));
                         break;
                     
                     case 1:                       

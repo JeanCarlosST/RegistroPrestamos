@@ -11,7 +11,7 @@ namespace RegistroPrestamos.BLL
     public class PersonaBLL
     {
         public static bool Guardar(Personas persona){
-            if(!Existe(persona.PersonaID))
+            if(!Existe(persona.PersonaId))
                 return Insertar(persona); 
             else    
                 return Modificar(persona);
@@ -93,7 +93,7 @@ namespace RegistroPrestamos.BLL
             bool found = false;
 
             try{
-                found = context.Personas.Any(p => p.PersonaID == id);
+                found = context.Personas.Any(p => p.PersonaId == id);
             
             } catch{
                 throw;

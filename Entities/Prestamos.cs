@@ -7,14 +7,21 @@ namespace RegistroPrestamos.Entities
 {
     public class Prestamos {
         [Key]
-        public int PrestamoID { get; set; }
+        public int PrestamoId { get; set; }
         public DateTime Fecha { get; set; }
         public string Concepto { get; set; }
         public float Monto { get; set; }
         public float Balance { get; set; }
-        public int PersonaID { get; set; }
+        public int PersonaId { get; set; }
+        public decimal Mora { get; set; }
 
-        [ForeignKey("PrestamoID")]
+        [ForeignKey("PrestamoId")]
         public virtual List<MorasDetalle> Detalle { get; set; }
+
+        public Prestamos()
+        {
+            Mora = 0M;
+            Detalle = new List<MorasDetalle>();
+        }
     }
 }

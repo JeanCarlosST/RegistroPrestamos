@@ -6,10 +6,10 @@
         Icon="/Images/form.png">
 
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <!-- ID -->
+        <!-- Id -->
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="ID:" Width="120"/>
-            <TextBox x:Name="PrestamoIDTextBox" Width="85" Text="{Binding PrestamoID}" BorderBrush="Black"/>
+            <Label Content="Id:" Width="120"/>
+            <TextBox x:Name="PrestamoIdTextBox" Width="85" Text="{Binding PrestamoId}" BorderBrush="Black"/>
             <Button x:Name="BuscarBoton" Width="85" Height="30" Margin="30,0,0,0" Click="BuscarBoton_Click" BorderBrush="Black" Background="#FF02A5ED">
                 <StackPanel Orientation="Horizontal">
                     <Image Width="18" Height="18" Source="/Images/search.png"/>
@@ -24,10 +24,10 @@
             <DatePicker x:Name="FechaDatePicker" Width="200" SelectedDate="{Binding Fecha}" BorderBrush="Black"/>
         </StackPanel>
 
-        <!-- PersonaID -->
+        <!-- PersonaId -->
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="Persona ID:" Width="120"/>
-            <ComboBox x:Name="PersonaComboBox" Width="200" SelectedValue="{Binding PersonaID}"/>
+            <Label Content="Persona Id:" Width="120"/>
+            <ComboBox x:Name="PersonaComboBox" Width="200" SelectedValue="{Binding PersonaId}"/>
         </StackPanel>
 
         <!-- Concepto -->

@@ -11,7 +11,7 @@
             <StackPanel HorizontalAlignment="Left" >
                 <Label Content="Filtro:"/>
                 <ComboBox x:Name="FiltroComboBox" Width="100" Height="25">
-                    <ComboBoxItem Content="Persona ID"/>
+                    <ComboBoxItem Content="Persona Id"/>
                     <ComboBoxItem Content="Nombre"/>
                 </ComboBox>
             </StackPanel>
@@ -31,7 +31,7 @@
 
         <DataGrid x:Name="DatosDataGrid" Height="320" Width="Auto" AutoGenerateColumns="False" IsReadOnly="True" BorderBrush="Black">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="PersonaID" Binding="{Binding PersonaID}" Width="*"/>
+                <DataGridTextColumn Header="PersonaId" Binding="{Binding PersonaId}" Width="*"/>
                 <DataGridTextColumn Header="Nombres" Binding="{Binding Nombres}" Width="*"/>
                 <DataGridTextColumn Header="Balance" Binding="{Binding Balance}" Width="*"/>
             </DataGrid.Columns>

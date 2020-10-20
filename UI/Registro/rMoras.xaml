@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Label Content="Mora ID: " Width="70" VerticalAlignment="Center"/>
-            <TextBox x:Name="MoraIdTextBox" Text="{Binding MoraID}" Width="80" Height="20" BorderBrush="Black" Background="White"/>
+            <Label Content="Mora Id: " Width="70" VerticalAlignment="Center"/>
+            <TextBox x:Name="MoraIdTextBox" Text="{Binding MoraId}" Width="80" Height="20" BorderBrush="Black" Background="White"/>
             <Button x:Name="BuscarBoton" Width="85" Height="30" Margin="10,0,0,0" Click="BuscarBoton_Click" BorderBrush="Black" Background="#FF02A5ED">
                 <StackPanel Orientation="Horizontal">
                     <Image Width="18" Height="18" Source="/Images/search.png"/>
@@ -67,8 +67,8 @@
 
                 <DataGrid x:Name="DetalleDataGrid" ItemsSource="{Binding Detalle}" Margin="0,5,0,0" AutoGenerateColumns="False" IsReadOnly="True" Height="160" HorizontalScrollBarVisibility="Disabled" BorderBrush="#FF484848">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Width="*" Binding="{Binding MoraID}"/>
-                        <DataGridTextColumn Header="Prestamo ID" Width="*" Binding="{Binding PrestamoID}"/>
+                        <!-- <DataGridTextColumn Header="Id" Width="*" Binding="{Binding MoraId}"/> -->
+                        <DataGridTextColumn Header="Prestamo Id" Width="*" Binding="{Binding PrestamoId}"/>
                         <DataGridTextColumn Header="Mora" Width="*" Binding="{Binding Valor}"/>
                     </DataGrid.Columns>
                 </DataGrid>

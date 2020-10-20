@@ -11,7 +11,7 @@ namespace RegistroPrestamos.BLL
     public class MorasBLL
     {
         public static bool Guardar(Moras mora){
-            if(!Existe(mora.MoraID))
+            if(!Existe(mora.MoraId))
                 return Insertar(mora); 
             else    
                 return Modificar(mora);
@@ -24,6 +24,14 @@ namespace RegistroPrestamos.BLL
             {
                 context.Moras.Add(mora);
                 found = context.SaveChanges() > 0;
+
+                List<MorasDetalle> detalles = mora.Detalle;
+                foreach(MorasDetalle d in detalles)
+                {
+                    Prestamos prestamo = PrestamoBLL.Buscar(d.PrestamoId);
+                    prestamo.Mora += d.Valor;
+                    PrestamoBLL.Guardar(prestamo);
+                }
 
             } catch{
                 throw;
@@ -40,10 +48,26 @@ namespace RegistroPrestamos.BLL
 
             try
             {
-                context.Database.ExecuteSqlRaw($"delete from MorasDetalle where MoraID = {mora.MoraID}");
+                List<MorasDetalle> viejosDetalles = Buscar(mora.MoraId).Detalle;
+                foreach (MorasDetalle d in viejosDetalles)
+                {
+                    Prestamos prestamo = PrestamoBLL.Buscar(d.PrestamoId);
+                    prestamo.Mora -= d.Valor;
+                    PrestamoBLL.Guardar(prestamo);
+                }
+
+                context.Database.ExecuteSqlRaw($"delete from MorasDetalle where MoraId = {mora.MoraId}");
                 foreach(var anterior in mora.Detalle)
                 {
                     context.Entry(anterior).State = EntityState.Added;
+                }
+
+                List<MorasDetalle> nuevosDetalles = mora.Detalle;
+                foreach(MorasDetalle d in nuevosDetalles)
+                {
+                    Prestamos prestamo = PrestamoBLL.Buscar(d.PrestamoId);
+                    prestamo.Mora += d.Valor;
+                    PrestamoBLL.Guardar(prestamo);
                 }
 
                 context.Entry(mora).State = EntityState.Modified;
@@ -67,6 +91,14 @@ namespace RegistroPrestamos.BLL
             try{
                 var mora = context.Moras.Find(id);
 
+                List<MorasDetalle> viejosDetalles = Buscar(mora.MoraId).Detalle;
+                foreach (MorasDetalle d in viejosDetalles)
+                {
+                    Prestamos prestamo = PrestamoBLL.Buscar(d.PrestamoId);
+                    prestamo.Mora -= d.Valor;
+                    PrestamoBLL.Guardar(prestamo);
+                }
+
                 if(mora != null){
                     context.Entry(mora).State = EntityState.Deleted;
                     found = context.SaveChanges() > 0;
@@ -88,7 +120,7 @@ namespace RegistroPrestamos.BLL
             try{
                 mora = context.Moras
                     .Include(m => m.Detalle)
-                    .Where(m => m.MoraID == id)
+                    .Where(m => m.MoraId == id)
                     .SingleOrDefault();
                 
             } catch{
@@ -105,7 +137,7 @@ namespace RegistroPrestamos.BLL
             bool found = false;
 
             try{
-                found = context.Moras.Any(p => p.MoraID == id);
+                found = context.Moras.Any(p => p.MoraId == id);
             
             } catch{
                 throw;

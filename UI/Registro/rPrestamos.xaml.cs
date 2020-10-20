@@ -15,12 +15,12 @@ namespace RegistroPrestamos.UI.Registro
             this.DataContext = prestamo;
 
             PersonaComboBox.ItemsSource = PersonaBLL.GetList(p => true);
-            PersonaComboBox.SelectedValuePath = "PersonaID";
+            PersonaComboBox.SelectedValuePath = "PersonaId";
             PersonaComboBox.DisplayMemberPath = "Nombres";
         }
 
         public void BuscarBoton_Click(object sender, RoutedEventArgs e){
-            var prestamo = PrestamoBLL.Buscar(Utilities.ToInt(PrestamoIDTextBox.Text));
+            var prestamo = PrestamoBLL.Buscar(Utilities.ToInt(PrestamoIdTextBox.Text));
 
             if(prestamo != null)
                 this.prestamo = prestamo;
@@ -46,7 +46,7 @@ namespace RegistroPrestamos.UI.Registro
                 return false;   
 
             // } else if(PersonaTextBox.Text.Length == 0){
-            //     MessageBox.Show("Introduzca el ID de una persona válida", "Datos incorrectos", 
+            //     MessageBox.Show("Introduzca el Id de una persona válida", "Datos incorrectos", 
             //                     MessageBoxButton.OK, MessageBoxImage.Warning);
             //     return false;                
             
@@ -61,7 +61,7 @@ namespace RegistroPrestamos.UI.Registro
                 return false;                
             
             // } else if(!PersonaBLL.Existe(Utilities.ToInt(PersonaTextBox.Text))){
-            //     MessageBox.Show("El ID de la persona introducida no existe", "Datos incorrectos", 
+            //     MessageBox.Show("El Id de la persona introducida no existe", "Datos incorrectos", 
             //                     MessageBoxButton.OK, MessageBoxImage.Warning);
             //     return false;
 
@@ -87,7 +87,7 @@ namespace RegistroPrestamos.UI.Registro
                                 MessageBoxButton.OK, MessageBoxImage.Error);
         }
         public void EliminarBoton_Click(object sender, RoutedEventArgs e){
-            if(PrestamoBLL.Eliminar(Utilities.ToInt(PrestamoIDTextBox.Text))){
+            if(PrestamoBLL.Eliminar(Utilities.ToInt(PrestamoIdTextBox.Text))){
                 Limpiar();
                 MessageBox.Show("Registro borrado", "Borrado exitoso", 
                                 MessageBoxButton.OK, MessageBoxImage.Information);

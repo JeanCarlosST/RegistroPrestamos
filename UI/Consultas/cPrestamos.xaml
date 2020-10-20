@@ -10,8 +10,8 @@
             <StackPanel Margin="5,0" HorizontalAlignment="Left">
                 <Label Content="Filtro:"/>
                 <ComboBox x:Name="FiltroComboBox" Width="120" Height="25">
-                    <ComboBoxItem Content="Prestamo ID"/>
-                    <ComboBoxItem Content="Persona ID"/>
+                    <ComboBoxItem Content="Prestamo Id"/>
+                    <ComboBoxItem Content="Persona Id"/>
                     <ComboBoxItem Content="Fecha"/>
                     <ComboBoxItem Content="Concepto"/>
                 </ComboBox>
@@ -33,9 +33,9 @@
 
         <DataGrid x:Name="DatosDataGrid" Height="320" Width="Auto" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="PrestamoID" Binding="{Binding PrestamoID}" Width="*"/>
+                <DataGridTextColumn Header="PrestamoId" Binding="{Binding PrestamoId}" Width="*"/>
                 <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}"  Width="*"/>
-                <DataGridTextColumn Header="PersonaID" Binding="{Binding PersonaID}"  Width="*"/>
+                <DataGridTextColumn Header="PersonaId" Binding="{Binding PersonaId}"  Width="*"/>
                 <DataGridTextColumn Header="Concepto" Binding="{Binding Concepto}"  Width="*"/>
                 <DataGridTextColumn Header="Monto" Binding="{Binding Monto}"  Width="*"/>
                 <DataGridTextColumn Header="Balance" Binding="{Binding Balance}"  Width="*"/>

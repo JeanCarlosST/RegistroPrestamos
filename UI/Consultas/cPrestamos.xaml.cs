@@ -21,11 +21,11 @@ namespace RegistroPrestamos.UI.Consulta
                 switch (FiltroComboBox.SelectedIndex)
                 {
                     case 0:
-                        listado = PrestamoBLL.GetList(p => p.PrestamoID == Utilities.ToInt(CriterioTextBox.Text));
+                        listado = PrestamoBLL.GetList(p => p.PrestamoId == Utilities.ToInt(CriterioTextBox.Text));
                         break;
 
                     case 1:
-                        listado = PrestamoBLL.GetList(p => p.PersonaID == Utilities.ToInt(CriterioTextBox.Text));
+                        listado = PrestamoBLL.GetList(p => p.PersonaId == Utilities.ToInt(CriterioTextBox.Text));
                         break;
 
                     case 2:

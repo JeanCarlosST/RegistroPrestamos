@@ -6,10 +6,10 @@
         Icon="/Images/form.png">
 
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <!-- ID -->
+        <!-- Id -->
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="ID:" Width="120"/>
-            <TextBox x:Name="PersonaIDTextBox" Width="85" Text="{Binding PersonaID}" BorderBrush="Black"/>
+            <Label Content="Id:" Width="120"/>
+            <TextBox x:Name="PersonaIdTextBox" Width="85" Text="{Binding PersonaId}" BorderBrush="Black"/>
             <Button x:Name="BuscarBoton" Width="85" Height="30" Margin="30,0,0,0" Click="BuscarBoton_Click" BorderBrush="Black" Background="#FF02A5ED">
                 <StackPanel Orientation="Horizontal">
                     <Image Width="18" Height="18" Source="/Images/search.png"/>

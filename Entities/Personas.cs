@@ -6,11 +6,11 @@ namespace RegistroPrestamos.Entities
 {
     public class Personas {
         [Key]
-        public int PersonaID { get; set; }
+        public int PersonaId { get; set; }
         public string Nombres { get; set; }
         public float Balance { get; set; }
 
-        [ForeignKey("PersonaID")]
+        [ForeignKey("PersonaId")]
         public virtual List<Prestamos> Prestamos { get; set; }
 
         public Personas()
